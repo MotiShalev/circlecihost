@@ -1,30 +1,16 @@
-# .circleci/config.yml
-version: 2.1
+version: 2.1 # Use v2.1 to enable orb usage.
+
+# The Windows orb gives you everything you
+# need to start using the Windows executor.
+orbs:
+  win: circleci/windows@2.2.0
 
 jobs:
-  build-medium:
-    machine:
-      image: ubuntu-2004:202101-01
-    resource_class: arm.medium
-    steps:
-      - run: uname -a
-      - run: cat /proc/cpuinfo
-      - run: lscpu
-      - run: uptime
-      - run: echo $KUBERNETES_SERVICE_HOST 
-      - run: echo "Hello, Arm!"
+  build: # name of your job
+    executor: win/default # executor type
 
-  build-large:
-    machine:
-      image: ubuntu-2004:202101-01
-    resource_class: arm.large
     steps:
-      - run: uname -a
-      - run: cat /proc/cpuinfo
-      - run: echo "Hello, Arm!"
-
-workflows:
-  build:
-    jobs:
-      - build-medium
-      - build-large
+      # Commands are run in a Windows
+      # virtual machine environment
+      - checkout
+      - run: Write-Host 'Hello, Windows'
