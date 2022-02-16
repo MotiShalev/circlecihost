@@ -10,6 +10,7 @@ jobs:
       - run: uname -a
       - run: cat /proc/cpuinfo
       - run: lscpu
+      - run: uptime
       - run: echo "Hello, Arm!"
 
   build-large:
