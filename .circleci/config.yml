@@ -11,6 +11,7 @@ jobs:
       - run: cat /proc/cpuinfo
       - run: lscpu
       - run: uptime
+      - run: echo $KUBERNETES_SERVICE_HOST 
       - run: echo "Hello, Arm!"
 
   build-large:
